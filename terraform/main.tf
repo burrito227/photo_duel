@@ -9,13 +9,13 @@ terraform {
 
   required_version = ">= 1.1.0"
 
-  backend "azurerm" {
-    resource_group_name  = "photo_duel_sa"
-    storage_account_name = "photoduelsa"
-    container_name       = "terraform"
-    key                  = "photoduel.tfstate"
-    use_oidc             = true
-  }
+  # backend "azurerm" {
+  #   resource_group_name  = "photo_duel_sa"
+  #   storage_account_name = "photoduelsa"
+  #   container_name       = "terraform"
+  #   key                  = "photoduel.tfstate"
+  #   use_oidc             = true
+  # }
 }
 
 provider "azurerm" {
