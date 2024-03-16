@@ -14,6 +14,7 @@ terraform {
     storage_account_name = "photoduelsa"
     container_name       = "terraform"
     key                  = "photoduel.tfstate"
+    use_oidc             = true
   }
 }
 
