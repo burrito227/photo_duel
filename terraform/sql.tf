@@ -17,8 +17,4 @@ resource "azurerm_mssql_database" "db" {
   min_capacity                = 2
   auto_pause_delay_in_minutes = 60
 
-  lifecycle {
-    prevent_destroy = true
-  }
-
 }
