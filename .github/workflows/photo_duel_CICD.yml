@@ -42,7 +42,8 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init
+      run: terraform init -backend-config="tenant_id=${{ secrets.ARM_TENANT_ID }}" -backend-config="client_id=${{ secrets.ARM_CLIENT_ID }}"
+
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
