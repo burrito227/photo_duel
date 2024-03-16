@@ -46,3 +46,11 @@ variable "admin_username" {
   description = "username for admin access to sql DB."
   type        = string
 }
+
+# =============================================================================
+# Container Registry
+# =============================================================================
+variable "container_registry_name" {
+  description = "name of the container registry resource"
+  type        = string
+}

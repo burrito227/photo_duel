@@ -21,3 +21,8 @@ keyvault_rg   = "photo_duel_keyvault"
 sqlserver_name = "photodueldb"
 sqldb_name     = "photoduelsql"
 admin_username = "sqladmin"
+
+# =============================================================================
+# Container Registry
+# =============================================================================
+container_registry_name = "photoduelcr"
