@@ -55,8 +55,8 @@ jobs:
       run: terraform output -json > output.json
 
     - name: Echo Environement Variables from tf outputs
-          run: |
-            DB_PASSWORD=$(jq -r '.db_admin_password.value' output.json)
-            echo "DB_PASSWORD=$DB_PASSWORD" >> $GITHUB_ENV
-            DJANGO_SECRET_KEY=$(jq -r '.db_admin_password.value' output.json)
-            echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" >> $GITHUB_ENV
+      run: |
+        DB_PASSWORD=$(jq -r '.db_admin_password.value' output.json)
+        echo "DB_PASSWORD=$DB_PASSWORD" >> $GITHUB_ENV
+        DJANGO_SECRET_KEY=$(jq -r '.db_admin_password.value' output.json)
+        echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" >> $GITHUB_ENV
