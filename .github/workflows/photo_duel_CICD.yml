@@ -67,3 +67,14 @@ jobs:
     
         ACR_LOGIN_SERVER=$(terraform output -raw acr_login_server)
         echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
+
+    - name: Login to ACR
+      run: |
+        echo "${{ env.CR_PASSWORD }}" | docker login ${{ env.ACR_LOGIN_SERVER }} -u ${{ env.CR_ADMIN }} --password-stdin
+    
+    - name: Build and push Docker image
+      run: |
+        docker build --build-arg DJANGO_SECRET_KEY=${{ env.DJANGO_SECRET_KEY }} --build-arg DB_PASSWORD=${{ env.DB_PASSWORD }} -t ${{ env.ACR_LOGIN_SERVER }}/myapp:${{ github.sha }} .
+        docker push ${{ env.ACR_LOGIN_SERVER }}/myapp:${{ github.sha }}
+      
+    
