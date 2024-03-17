@@ -6,3 +6,13 @@ output "cr_admin_password" {
   value     = azurerm_container_registry.containerregistry.admin_password
   sensitive = true
 }
+
+output "db_admin_password" {
+  value     = azurerm_key_vault_secret.sql_admin_password.value
+  sensitive = true
+}
+
+output "django_secret_key" {
+  value     = azurerm_key_vault_secret.django_secret_key.value
+  sensitive = true
+}

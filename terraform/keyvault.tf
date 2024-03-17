@@ -14,3 +14,8 @@ resource "azurerm_key_vault_secret" "sql_admin_password" {
   value        = random_password.sql_password.result
   key_vault_id = data.azurerm_key_vault.keyvault.id
 }
+
+data "azurerm_key_vault_secret" "django_secret_key" {
+  name         = "django-secret-key"
+  key_vault_id = data.azurerm_key_vault.keyvault.id
+}
