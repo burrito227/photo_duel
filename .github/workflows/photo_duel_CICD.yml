@@ -54,20 +54,20 @@ jobs:
     - name: Echo Environment Variables from tf outputs
       run: |
         DB_PASSWORD=$(terraform output -raw db_admin_password)
-        echo "DB_PASSWORD=$DB_PASSWORD" >> $GITHUB_ENV
+        echo "DB_PASSWORD=\"$DB_PASSWORD\"" >> $GITHUB_ENV
     
         DJANGO_SECRET_KEY=$(terraform output -raw django_secret_key)
-        echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" >> $GITHUB_ENV
+        echo "DJANGO_SECRET_KEY=\"$DJANGO_SECRET_KEY\"" >> $GITHUB_ENV
       
         CR_ADMIN=$(terraform output -raw cr_admin_username)
-        echo "CR_ADMIN=$CR_ADMIN" >> $GITHUB_ENV
+        echo "CR_ADMIN=\"$CR_ADMIN\"" >> $GITHUB_ENV
     
         CR_PASSWORD=$(terraform output -raw cr_admin_password)
-        echo "CR_PASSWORD=$CR_PASSWORD" >> $GITHUB_ENV
+        echo "CR_PASSWORD=\"$CR_PASSWORD\"" >> $GITHUB_ENV
     
         ACR_LOGIN_SERVER=$(terraform output -raw acr_login_server)
-        echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
-
+        echo "ACR_LOGIN_SERVER=\"$ACR_LOGIN_SERVER\"" >> $GITHUB_ENV
+  
     - name: Login to ACR
       run: |
         echo "${{ env.CR_PASSWORD }}" | docker login ${{ env.ACR_LOGIN_SERVER }} -u ${{ env.CR_ADMIN }} --password-stdin
