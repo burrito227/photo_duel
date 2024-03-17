@@ -7,6 +7,11 @@ output "cr_admin_password" {
   sensitive = true
 }
 
+output "acr_login_server" {
+  value = azurerm_container_registry.containerregistry.login_server
+  description = "The login server of the Azure Container Registry"
+}
+
 output "db_admin_password" {
   value     = azurerm_key_vault_secret.sql_admin_password.value
   sensitive = true
