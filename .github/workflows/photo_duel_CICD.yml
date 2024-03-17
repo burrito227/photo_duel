@@ -50,13 +50,20 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false -var-file="../photo_duel.tfvars"
 
-    # Outputs terraform outputs to .json
-    - name: Terraform Output
-      run: terraform output -json > output.json
-
-    - name: Echo Environement Variables from tf outputs
+    # terraform outputs
+    - name: Echo Environment Variables from tf outputs
       run: |
-        DB_PASSWORD=$(jq -r '.db_admin_password.value' output.json)
+        DB_PASSWORD=$(terraform output -raw db_admin_password)
         echo "DB_PASSWORD=$DB_PASSWORD" >> $GITHUB_ENV
-        DJANGO_SECRET_KEY=$(jq -r '.db_admin_password.value' output.json)
+    
+        DJANGO_SECRET_KEY=$(terraform output -raw django_secret_key)
         echo "DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY" >> $GITHUB_ENV
+      
+        CR_ADMIN=$(terraform output -raw cr_admin_username)
+        echo "CR_ADMIN=$CR_ADMIN" >> $GITHUB_ENV
+    
+        CR_PASSWORD=$(terraform output -raw cr_admin_password)
+        echo "CR_PASSWORD=$CR_PASSWORD" >> $GITHUB_ENV
+    
+        ACR_LOGIN_SERVER=$(terraform output -raw acr_login_server)
+        echo "ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER" >> $GITHUB_ENV
