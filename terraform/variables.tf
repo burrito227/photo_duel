@@ -54,3 +54,11 @@ variable "container_registry_name" {
   description = "name of the container registry resource"
   type        = string
 }
+
+# =============================================================================
+# Web app
+# =============================================================================
+variable "app_service_name" {
+  description = "The name of the web app"
+  type        = string
+}
