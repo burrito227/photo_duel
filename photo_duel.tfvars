@@ -2,7 +2,7 @@
 # General Variables
 # =============================================================================
 rg     = "photo_duel"
-region = "centralus"
+region = "eastus"
 tags = {
   provisioning_mode = "terraform",
   project           = "photo_duel",
@@ -26,3 +26,8 @@ admin_username = "sqladmin"
 # Container Registry
 # =============================================================================
 container_registry_name = "photoduelcr"
+
+# =============================================================================
+# Web app
+# =============================================================================
+app_service_name = "photo-duel"
