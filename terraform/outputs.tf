@@ -8,7 +8,7 @@ output "cr_admin_password" {
 }
 
 output "acr_login_server" {
-  value = azurerm_container_registry.containerregistry.login_server
+  value       = azurerm_container_registry.containerregistry.login_server
   description = "The login server of the Azure Container Registry"
 }
 
@@ -23,9 +23,9 @@ output "django_secret_key" {
 }
 
 output "rg" {
-  value     = var.rg
+  value = var.rg
 }
 
 output "webapp_name" {
-  value     = var.app_service_name
+  value = var.app_service_name
 }

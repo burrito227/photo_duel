@@ -18,7 +18,7 @@ resource "azurerm_app_service" "example" {
   }
 
   app_settings = {
-    "DOCKER_REGISTRY_SERVER_URL" = "https://${azurerm_container_registry.containerregistry.login_server}"
+    "DOCKER_REGISTRY_SERVER_URL"      = "https://${azurerm_container_registry.containerregistry.login_server}"
     "DOCKER_REGISTRY_SERVER_USERNAME" = azurerm_container_registry.containerregistry.admin_username
     "DOCKER_REGISTRY_SERVER_PASSWORD" = azurerm_container_registry.containerregistry.admin_password
   }
