@@ -69,5 +69,6 @@ jobs:
       run: |
         docker build --build-arg DJANGO_SECRET_KEY=${{ env.DJANGO_SECRET_KEY }} --build-arg DB_PASSWORD=${{ env.DB_PASSWORD }} -t ${{ env.ACR_LOGIN_SERVER }}/myapp:${{ github.sha }} .
         docker push ${{ env.ACR_LOGIN_SERVER }}/myapp:${{ github.sha }}
+      working-directory: .
       
     
