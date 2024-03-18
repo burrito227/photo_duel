@@ -60,7 +60,9 @@ jobs:
         echo "CR_ADMIN=$(terraform output -raw cr_admin_username)" >> $GITHUB_ENV
         echo "CR_PASSWORD=$(terraform output -raw cr_admin_password)" >> $GITHUB_ENV
         echo "ACR_LOGIN_SERVER=$(terraform output -raw acr_login_server)" >> $GITHUB_ENV  
-  
+        echo "RESOURCE_GROUP=$(terraform output -raw rg)" >> $GITHUB_ENV 
+        echo "WEB_APP_NAME=$(terraform output -raw webapp_name)" >> $GITHUB_ENV 
+
     - name: Login to ACR
       run: |
         echo "${{ env.CR_PASSWORD }}" | docker login ${{ env.ACR_LOGIN_SERVER }} -u ${{ env.CR_ADMIN }} --password-stdin
@@ -70,5 +72,14 @@ jobs:
         docker build --build-arg DJANGO_SECRET_KEY='${{ env.DJANGO_SECRET_KEY }}' --build-arg DB_PASSWORD=${{ env.DB_PASSWORD }} -t ${{ env.ACR_LOGIN_SERVER }}/photoduel:${{ github.sha }} .
         docker push ${{ env.ACR_LOGIN_SERVER }}/photoduel:${{ github.sha }}
       working-directory: .
-      
     
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        client-secret: ${{ secrets.CLIENT_SECRET }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    
+    - name: Restart Web App
+      run: |
+        az webapp restart --name "${{ env.WEB_APP_NAME }}" --resource-group "${{ env.RESOURCE_GROUP }}"

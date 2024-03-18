@@ -21,3 +21,11 @@ output "django_secret_key" {
   value     = data.azurerm_key_vault_secret.django_secret_key.value
   sensitive = true
 }
+
+output "rg" {
+  value     = var.rg
+}
+
+output "webapp_name" {
+  value     = var.app_service_name
+}
