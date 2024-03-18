@@ -18,6 +18,6 @@ output "db_admin_password" {
 }
 
 output "django_secret_key" {
-  value     = data.azurerm_key_vault_secret.django_secret_key
+  value     = data.azurerm_key_vault_secret.django_secret_key.value
   sensitive = true
 }
