@@ -31,4 +31,4 @@ container_registry_name = "photoduelcr"
 # Web app
 # =============================================================================
 app_service_name = "photo-duel"
-app_service_sku  = "B1"
+app_service_sku  = "B2"
