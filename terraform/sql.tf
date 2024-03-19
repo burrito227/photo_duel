@@ -7,6 +7,15 @@ resource "azurerm_mssql_server" "sql" {
   administrator_login_password = azurerm_key_vault_secret.sql_admin_password.value
 }
 
+# for allowing Azure resources to connect to the database
+resource "azurerm_sql_firewall_rule" "azure_resources_rule" {
+  name                = "AllowAllWindowsAzureIps"
+  resource_group_name = azurerm_resource_group.rg.name
+  server_name         = azurerm_mssql_server.sql.name
+  start_ip_address    = "0.0.0.0"
+  end_ip_address      = "0.0.0.0"
+}
+
 resource "azurerm_mssql_database" "db" {
   name                        = var.sqldb_name
   server_id                   = azurerm_mssql_server.sql.id
