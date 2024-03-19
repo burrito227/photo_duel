@@ -2,7 +2,7 @@ resource "azurerm_service_plan" "photo_duel_app_plan" {
   name                = "${var.app_service_name}_plan"
   location            = var.region
   resource_group_name = azurerm_resource_group.rg.name
-  sku_name            = "B1"
+  sku_name            = var.app_service_sku
   os_type             = "Linux"
 }
 
