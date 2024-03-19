@@ -62,3 +62,8 @@ variable "app_service_name" {
   description = "The name of the web app"
   type        = string
 }
+
+variable "app_service_sku" {
+  description = "The sku of the web app"
+  type        = string
+}
