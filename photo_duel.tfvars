@@ -6,7 +6,8 @@ region = "eastus"
 tags = {
   provisioning_mode = "terraform",
   project           = "photo_duel",
-  environment_owner = "Gabriel Saenz"
+  environment_owner = "Gabriel Saenz",
+  test = "test"
 }
 
 # =============================================================================
